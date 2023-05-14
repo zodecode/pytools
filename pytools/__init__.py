@@ -1,4 +1,11 @@
 def _main():
+    import sys
+    import os
+
+    # Get the absolute path of the current directory
+    current_dir = os.path.abspath(os.path.dirname(__file__))
+    # Append the current directory to the Python path
+    sys.path.append(current_dir)
     """\
     Usage: pytools [options] [FILE ...]
 
