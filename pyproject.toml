@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=64.2.0", "setuptools_scm[toml]>=6.4.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pytools"
+authors = [{name = "Zource", email = "zourcekode@gmail.com"}]
+license = {text = "MIT"}
+description = "Pretty-print system tools"
+readme = "README.md"
+classifiers = [
+    "Development Status :: 1 - Alpha",
+    "License :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries",
+]
+requires-python = ">=3.7"
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/zodecode/pytools"
+
+[project.scripts]
+pytools = "pytools:_main"
+
+[tool.setuptools]
+packages = ["pytools"]
+
+[tool.setuptools_scm]
+write_to = "pytools/version.py"
