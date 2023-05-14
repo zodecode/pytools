@@ -39,7 +39,7 @@ def _main():
             cmd = value
         elif opt in ["-v", "--version"]:
             cmd = value
-            from . import version
+            import version
             print(f"version:", version.__version__)
             sys.exit(0)
         elif opt in ["-h", "--help"]:

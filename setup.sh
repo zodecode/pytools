@@ -28,6 +28,8 @@ build(){
   # -w or --wheel: Builds a wheel distribution (a .whl file containing pre-compiled binary modules).
   # -x or --no-isolation: Disables the isolation of builds by using the system-installed versions of build dependencies if available.
   # .: Specifies the current directory as the location of the project to be built.
+  echo "Removing whl files"
+  rm ./dist/*.whl
   # python3 -m build -nswx .
   python3 -m build -wx .
   ls -lh dist/
@@ -38,7 +40,7 @@ install(){
   pip install "$1"
 }
 test(){
-  python ./pytools/__init__.py version
+  python ./pytools/__init__.py --version
 }
 [[ $1 == "-h" ]] && shift && usage "$@" && exit 0
 [[ $1 == "create_env" ]] && shift && create_env "$@" && exit 0
