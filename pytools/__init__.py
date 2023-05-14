@@ -1,11 +1,12 @@
+import sys
+import os
+# Get the absolute path of the current directory
+current_dir = os.path.abspath(os.path.dirname(__file__))
+# Append the current directory to the Python path
+sys.path.append(current_dir)
+from pytools import version
+VERSION = version.__version__
 def _main():
-    import sys
-    import os
-
-    # Get the absolute path of the current directory
-    current_dir = os.path.abspath(os.path.dirname(__file__))
-    # Append the current directory to the Python path
-    sys.path.append(current_dir)
     """\
     Usage: pytools [options] [FILE ...]
 
@@ -46,8 +47,8 @@ def _main():
             cmd = value
         elif opt in ["-v", "--version"]:
             cmd = value
-            import version
-            print(f"version:", version.__version__)
+
+            print(f"version:", VERSION)
             sys.exit(0)
         elif opt in ["-h", "--help"]:
             print(usage)
@@ -61,6 +62,7 @@ def _run_command(cmd):
     if cmd == "date":
         from datetime import datetime
         print("Now: ", datetime.now())
+
 
 if __name__ == "__main__":
     _main()

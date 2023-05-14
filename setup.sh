@@ -38,6 +38,7 @@ install(){
   # pip install ./dist/pytools-0.1.dev1+gc2.whl
   FN=$(find ./dist/ -type f -iname "*.whl" | sort -nr | head -1)
   # [[ $# -lt 1 ]] && echo "missing .whl file" && exit 1
+  echo "installing: $FN"
   pip install "$FN"
 }
 test(){
