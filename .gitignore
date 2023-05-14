@@ -43,7 +43,7 @@ downloads/
 .zip
 .7z
 .rar
-
+*.egg-info
 .env
 .venv
 env/

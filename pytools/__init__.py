@@ -21,15 +21,15 @@ def _main():
     try:
         opts, args = getopt.getopt(
             sys.argv[1:],
-            "h1o:s:F:A:f:",
-            ["help", "output"],
+            "h1oc:s:F:A:f:",
+            ["help", "output", "cmd"],
         )
     except getopt.GetoptError as e:
         print(e)
         print(usage)
         sys.exit(2)
     outfile = "-"
-    cmd = ""
+    cmd = None
     for opt, value in opts:
         if opt in ["-o", "--output"]:
             outfile = value
@@ -43,8 +43,10 @@ def _main():
 
 
 def _run_command(cmd):
-    print("ls -la + ", cmd)
-
+    print("cmdrun:", cmd)
+    if cmd == "date":
+        from datetime import datetime
+        print("Now: ", datetime.now())
 
 if __name__ == "__main__":
     _main()

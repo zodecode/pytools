@@ -9,3 +9,7 @@ pip install tabulate
 pip install setuptools -U
 pip install setuptools-scm
 ```
+
+```bash
+./build.sh
+```
