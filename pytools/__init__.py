@@ -11,6 +11,7 @@ def _main():
 
     -h, --help                show this message
     -c, --cmd                 command name to execute
+    -v, --version             show pytools version
     -o FILE, --output FILE    dump output to FILE (default: stdout)
     """
     import getopt
@@ -21,8 +22,8 @@ def _main():
     try:
         opts, args = getopt.getopt(
             sys.argv[1:],
-            "h1oc:s:F:A:f:",
-            ["help", "output", "cmd"],
+            "h1oc:v:s:f:",
+            ["help", "output", "cmd", "version"],
         )
     except getopt.GetoptError as e:
         print(e)
@@ -30,11 +31,17 @@ def _main():
         sys.exit(2)
     outfile = "-"
     cmd = None
+    version = "0"
     for opt, value in opts:
         if opt in ["-o", "--output"]:
             outfile = value
         elif opt in ["-c", "--cmd"]:
             cmd = value
+        elif opt in ["-v", "--version"]:
+            cmd = value
+            from . import version
+            print(f"version:", version.__version__)
+            sys.exit(0)
         elif opt in ["-h", "--help"]:
             print(usage)
             sys.exit(0)

@@ -23,14 +23,22 @@ upgrade(){
   python3 -m pip install build setuptools_scm
 }
 build(){
-  python3 -m build -nswx .
+  # -n or --no-clean: Skips the clean-up step, which means previously built files are not removed before building the package.
+  # -s or --sdist: Builds a source distribution (a .tar.gz or .zip file containing the project's source code).
+  # -w or --wheel: Builds a wheel distribution (a .whl file containing pre-compiled binary modules).
+  # -x or --no-isolation: Disables the isolation of builds by using the system-installed versions of build dependencies if available.
+  # .: Specifies the current directory as the location of the project to be built.
+  # python3 -m build -nswx .
+  python3 -m build -wx .
+  ls -lh dist/
 }
 install(){
   # pip install ./dist/pytools-0.1.dev1+gc2.whl
+  [[ $# -lt 1 ]] && echo "missing .whl file" && exit 1
   pip install "$1"
 }
 test(){
-  python ./pytools/__init__.py -c date
+  python ./pytools/__init__.py version
 }
 [[ $1 == "-h" ]] && shift && usage "$@" && exit 0
 [[ $1 == "create_env" ]] && shift && create_env "$@" && exit 0
